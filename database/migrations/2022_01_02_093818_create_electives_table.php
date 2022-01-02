@@ -15,6 +15,9 @@ class CreateElectivesTable extends Migration
     {
         Schema::create('electives', function (Blueprint $table) {
             $table->id();
+            $table->foreign('student_id')->references('id')->on('students');
+            $table->foreign('course_id')->references('id')->on('courses');
+            $table->integer('score');
             $table->timestamps();
         });
     }
