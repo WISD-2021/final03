@@ -15,6 +15,11 @@ class CreatePaysTable extends Migration
     {
         Schema::create('pays', function (Blueprint $table) {
             $table->id();
+            $table->foreign('student_id')->references('id')->on('students');
+            $table->foreign('homework_id')->references('id')->on('homework');
+            $table->dateTime('datetime');
+            $table->string('file',100);
+            $table->integer('score');
             $table->timestamps();
         });
     }
