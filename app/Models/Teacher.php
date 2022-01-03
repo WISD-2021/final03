@@ -13,4 +13,12 @@ class Teacher extends Model
         'id',
         'user_id',
     ];
+
+    public function users(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function courses(){
+        return $this->hasOne(Course::class);
+    }
 }

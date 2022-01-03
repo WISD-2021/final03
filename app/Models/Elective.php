@@ -16,4 +16,12 @@ class Elective extends Model
         'course_id',
         'score',
     ];
+
+    public function students(){
+        return $this->belongsTo(Student::class);
+    }
+
+    public function courses(){
+        return $this->belongsTo(Course::class);
+    }
 }

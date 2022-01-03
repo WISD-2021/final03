@@ -15,4 +15,16 @@ class Course extends Model
         'name',
         'credits',
     ];
+
+    public function teachers(){
+        return $this->belongsTo(Teacher::class);
+    }
+
+    public function homeworks(){
+        return $this->hasMany(Homework::class);
+    }
+
+    public function electives(){
+        return $this->hasMany(Elective::class);
+    }
 }

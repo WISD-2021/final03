@@ -13,4 +13,16 @@ class Student extends Model
         'id',
         'user_id',
     ];
+
+    public function users(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function electives(){
+        return $this->hasMany(Elective::class);
+    }
+
+    public function pays(){
+        return $this->hasMany(Pay::class);
+    }
 }

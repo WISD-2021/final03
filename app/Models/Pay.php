@@ -17,4 +17,12 @@ class Pay extends Model
         'file',
         'score',
     ];
+
+    public function students(){
+        return $this->belongsTo(Student::class);
+    }
+
+    public function homeworks(){
+        return $this->belongsTo(Homework::class);
+    }
 }

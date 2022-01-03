@@ -13,4 +13,12 @@ class Homework extends Model
         'id',
         'student_id',
     ];
+
+    public function courses(){
+        return $this->belongsTo(Course::class);
+    }
+
+    public function pays(){
+        return $this->hasMany(Pay::class);
+    }
 }
