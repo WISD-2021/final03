@@ -29,6 +29,12 @@
                 <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
             </div>
 
+            <div class="mt-4">
+                <x-jet-label for="status" value="{{ __('status') }}" />
+                <x-jet-input id="status" class="mt-1 w-1/2" type="radio" name="status" value="教師" required/>&nbsp;教師 &emsp;
+                <x-jet-input id="status" class="mt-1 w-1/2" type="radio" name="status" value="學生" required/>&nbsp;學生
+            </div>
+
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                 <div class="mt-4">
                     <x-jet-label for="terms">
