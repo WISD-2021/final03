@@ -15,8 +15,8 @@ class CreatePaysTable extends Migration
     {
         Schema::create('pays', function (Blueprint $table) {
             $table->id();
-            $table->integer('student_id');
-            $table->integer('homework_id');
+            $table->unsignedBigInteger('student_id');
+            $table->unsignedBigInteger('homework_id');
             $table->dateTime('datetime');
             $table->string('file',100);
             $table->integer('score');
