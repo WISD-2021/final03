@@ -26,7 +26,14 @@
                 </li>
                 <li class="divider"></li>
                 <li>
-                    <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                    <a class="nav-link" href="{{ route('logout') }}" style="font-size:15px;color: #6b7280"
+                       onclick="event.preventDefault();
+                           document.getElementById('logout-form').submit();">
+                        Log out
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 </li>
             </ul>
         </li>
@@ -38,7 +45,7 @@
                 <a href="{{ route('teacher.dashboard.index') }}"><i class="fa fa-fw fa-dashboard"></i> 主控台</a>
             </li>
             <li>
-                <a href="{{ route('teacher.posts.index') }}"><i class="fa fa-fw fa-edit"></i> 文章管理</a>
+                <a href="{{ route('teacher.courses.index') }}"><i class="fa fa-fw fa-edit"></i> 課程管理</a>
             </li>
         </ul>
     </div>

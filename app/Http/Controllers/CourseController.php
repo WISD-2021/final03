@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
+use http\Env\Request;
+use Illuminate\Support\Facades\DB;
 
 class CourseController extends Controller
 {
@@ -13,9 +15,12 @@ class CourseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-        //
+        $courses = Course::orderBy('id','ASC')->get();
+        $data = ['courses'=>$courses];
+        return view('teacher.courses.index',$data);
     }
 
     /**
@@ -25,7 +30,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        return view('teacher.courses.create');
     }
 
     /**
@@ -36,7 +41,8 @@ class CourseController extends Controller
      */
     public function store(StoreCourseRequest $request)
     {
-        //
+        Course::create($request->all());
+        return redirect()->route('teacher.courses.index');
     }
 
     /**
@@ -56,9 +62,11 @@ class CourseController extends Controller
      * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function edit(Course $course)
+    public function edit($id)
     {
-        //
+        $course = Course::find($id);
+        $data = ['course'=>$course];
+        return view('teacher.courses.edit',$data);
     }
 
     /**
@@ -68,9 +76,11 @@ class CourseController extends Controller
      * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCourseRequest $request, Course $course)
+    public function update(UpdateCourseRequest $request,$id)
     {
-        //
+        $course = Course::find($id);
+        $course->update($request->all());
+        return redirect()->route('teacher.courses.index');
     }
 
     /**
@@ -79,8 +89,9 @@ class CourseController extends Controller
      * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Course $course)
+    public function delete($id)
     {
-        //
+        Course::destroy($id);
+        return redirect()->route('teacher.courses.index');
     }
 }

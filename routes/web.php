@@ -13,9 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function(){
     return view('welcome');
 });
+
+Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
@@ -30,10 +32,10 @@ Route::get('/course',function(){
 Route::prefix('teacher')->group(function () {
     Route::get('/', [\App\Http\Controllers\TeacherController::class, 'index'])->name('teacher.dashboard.index');  //進入後台管理介面的路由
 
-//    Route::get('posts', [\App\Http\Controllers\AdminPostsController::class, 'index'])->name('teacher.posts.index');  //候台列出所有文章的路由
-//    Route::get('posts/create', [AdminPostsController::class, 'create'])->name('teacher.posts.create');  //候台產生新增表單的路由
-//    Route::get('posts/{id}/edit', [AdminPostsController::class, 'edit'])->name('teacher.posts.edit');  //候台生產修改表單的路由
-//    Route::post('posts',[AdminPostsController::class,'store'])->name('teacher.posts.store'); //新增資料
-//    Route::patch('posts/{post}',[AdminPostsController::class,'update'])->name('teacher.posts.update'); //更新資料
-//    Route::delete('posts/{post}',[AdminPostsController::class,'destroy'])->name('teacher.posts.destroy'); //刪除資料
+    Route::get('courses', [\App\Http\Controllers\CourseController::class, 'index'])->name('teacher.courses.index');  //候台列出所有文章的路由
+    Route::get('courses/create', [\App\Http\Controllers\CourseController::class, 'create'])->name('teacher.courses.create');  //候台產生新增表單的路由
+    Route::get('courses/{id}/edit', [\App\Http\Controllers\CourseController::class, 'edit'])->name('teacher.courses.edit');  //候台生產修改表單的路由
+    Route::post('courses',[\App\Http\Controllers\CourseController::class,'store'])->name('teacher.courses.store'); //新增資料
+    Route::patch('courses/{id}',[\App\Http\Controllers\CourseController::class,'update'])->name('teacher.courses.update'); //更新資料
+    Route::get('courses/{id}',[\App\Http\Controllers\CourseController::class,'delete'])->name('teacher.courses.destroy'); //刪除資料
 });
