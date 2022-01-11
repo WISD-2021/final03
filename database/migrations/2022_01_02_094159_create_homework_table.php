@@ -16,6 +16,8 @@ class CreateHomeworkTable extends Migration
         Schema::create('homework', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('course_id');
+            $table->string('name');
+            $table->text('content');
             $table->timestamps();
         });
     }
