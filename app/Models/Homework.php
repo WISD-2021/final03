@@ -11,7 +11,9 @@ class Homework extends Model
     protected $table='homework';
     protected $fillable=[
         'id',
-        'student_id',
+        'teacher_id',
+        'name',
+        'content',
     ];
 
     public function courses(){

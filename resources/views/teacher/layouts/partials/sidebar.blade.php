@@ -47,6 +47,9 @@
             <li>
                 <a href="{{ route('teacher.courses.index') }}"><i class="fa fa-fw fa-edit"></i> 課程管理</a>
             </li>
+            <li>
+                <a href="{{ route('teacher.homeworks.index') }}"><i class="fa fa-fw fa-edit"></i> 作業管理</a>
+            </li>
         </ul>
     </div>
     <!-- /.navbar-collapse -->

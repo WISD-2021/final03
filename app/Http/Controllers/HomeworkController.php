@@ -15,7 +15,9 @@ class HomeworkController extends Controller
      */
     public function index()
     {
-        //
+        $homeworks = Homework::orderBy('id','ASC')->get();
+        $data = ['homework' => $homeworks];
+        return view('teacher.homeworks.index',$data);
     }
 
     /**
@@ -25,7 +27,7 @@ class HomeworkController extends Controller
      */
     public function create()
     {
-        //
+        return view('teacher.homeworks.create');
     }
 
     /**
@@ -36,7 +38,8 @@ class HomeworkController extends Controller
      */
     public function store(StoreHomeworkRequest $request)
     {
-        //
+        Homework::create($request->aall());
+        return redirect()->route('teacher.homeworks.index');
     }
 
     /**
@@ -56,9 +59,11 @@ class HomeworkController extends Controller
      * @param  \App\Models\Homework  $homework
      * @return \Illuminate\Http\Response
      */
-    public function edit(Homework $homework)
+    public function edit($id)
     {
-        //
+        $homework = Homework::find($id);
+        $data = ['homework'=>$homework];
+        return view('teacher.homeworks.edit',$data);
     }
 
     /**
@@ -68,9 +73,11 @@ class HomeworkController extends Controller
      * @param  \App\Models\Homework  $homework
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateHomeworkRequest $request, Homework $homework)
+    public function update(UpdateHomeworkRequest $request, $id)
     {
-        //
+        $homework = Homework::find($id);
+        $homework->update($request->all());
+        return redirect()->route('teacher.homeworks.index');
     }
 
     /**
@@ -79,8 +86,9 @@ class HomeworkController extends Controller
      * @param  \App\Models\Homework  $homework
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Homework $homework)
+    public function destroy($id)
     {
-        //
+        Homework::destroy($id);
+        return redirect()->route('teacher.homeworks.index');
     }
 }
