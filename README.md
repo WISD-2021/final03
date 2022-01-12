@@ -7,60 +7,112 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## 課程管理
+![img_1.png](img_1.png)
+## 編輯課程
+![img_2.png](img_2.png)
+## 新增課程
+![img_3.png](img_3.png)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## ERD
+![img_5.png](img_5.png)
+## 資料庫綱要圖
+![img_6.png](img_6.png)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 資料庫欄位設計
+使用者資料表
+![img_7.png](img_7.png)
+學生資料表
+![img_8.png](img_8.png)
+老師資料表
+![img_9.png](img_9.png)
+修習資料表
+![img_10.png](img_10.png)
+課程資料表
+![img_11.png](img_11.png)
+作業資料表
+![img_12.png](img_12.png)
+繳交資料表
+![img_13.png](img_13.png)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 系統主要功能
+老師：可新增、刪除、修改課程資料
 
-## Learning Laravel
+## 網站安裝(系統恢復步驟)
+1. 複製 https://github.com/WISD-2021/final03.git 本系統在GitHub的專案
+- **打開 Source tree，點選 Clone 後，輸入以下資料Source Path:https://github.com/WISD-2021/final03.git Destination Path:C:\wagon\uwamp\www\final03 打開cmder，切換至專案所在資料夾，cd final03**
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+2. 在cmder輸入以下命令，以復原此系統：
+- **composer install**
+- **composer run‐script post‐root‐package‐install**
+- **composer run‐script post‐create‐project‐cmd**
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+3. 將專案打開 在.env檔案內輸入資料庫主機IP、Port、名稱、與帳密如下：：
+- **DB_HOST=127.0.0.1**
+- **DB_PORT=33060**
+- **DB_DATABASE=final03**
+- **DB_USERNAME=root**
+- **DB_PASSWORD=root**
 
-## Laravel Sponsors
+4. 復原完，建立資料庫
+- **先進Adminer建立final03的資料庫**
+- **建立好之後開啟cmder輸入以下指令： artisan migrate(成功執行後會復原所有資料表)**
+- **artisan db:seed(建立假資料)**
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+5. 進入adminer
+- **資料庫系統:MYSQL**
+- **伺服器:localhost:33060**
+- **帳號:root**
+- **密碼:root**
 
-### Premium Partners
+6. 在UwAmp下，點選Apache config，選擇port 8000 ，並在Document Root 輸入{DOCUMENTPATH}/final03/public
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-- **[Romega Software](https://romegasoftware.com)**
+## 初始專案與DB負責的同學
+* 初級專案建置：[3A832060 張雅茹](http://github.com/3A832060)
+* 資料庫關聯：[3A832060 張雅茹](http://github.com/3A832060)
+* 資料庫資料建置：[3A832060 張雅茹](http://github.com/3A832060)
 
-## Contributing
+## 系統使用帳號(使用者資料)
+* 前台-學生 帳號：3a832060@gmail.com  密碼：3a832060
+* 後台-教師 帳號：three@gmail.com 密碼：three333
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 系統測試資料存放位置
+* final03底下的sql資料夾
 
-## Code of Conduct
+## 系統開發人員
+* [3A832060 張雅茹](http://github.com/3A832060)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## 工作分配
+前台：[3A832060 張雅茹](http://github.com/3A832060)
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+後台：[3A832060 張雅茹](http://github.com/3A832060)
+* Route::prefix('teacher')->group(function () {
+* //主控台
+* Route::get('/', [\App\Http\Controllers\TeacherController::class, 'index'])->name('teacher.dashboard.index');
+* //課程管理頁面
+* Route::get('courses', [\App\Http\Controllers\CourseController::class, 'index'])->name('teacher.courses.index');
+* //新增課程
+* Route::get('courses/create', [\App\Http\Controllers\CourseController::class, 'create'])->name('teacher.courses.create');
+* //編輯課程
+* Route::get('courses/{id}/edit', [\App\Http\Controllers\CourseController::class, 'edit'])->name('teacher.courses.edit');
+* //儲存課程
+* Route::post('courses',[\App\Http\Controllers\CourseController::class,'store'])->name('teacher.courses.store');
+* //更新課程
+* Route::patch('courses/{id}',[\App\Http\Controllers\CourseController::class,'update'])->name('teacher.courses.update'); 
+* //刪除課程
+* Route::get('courses/{id}',[\App\Http\Controllers\CourseController::class,'delete'])->name('teacher.courses.destroy');
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+* //作業管理頁面
+* Route::get('homeworks', [\App\Http\Controllers\HomeworkController::class, 'index'])->name('teacher.homeworks.index');
+* //新增作業
+* Route::get('homeworks/create', [\App\Http\Controllers\HomeworkController::class, 'create'])->name('teacher.homeworks.create');
+* //編輯作業
+* Route::get('homeworks/{id}/edit', [\App\Http\Controllers\HomeworkController::class, 'edit'])->name('teacher.homeworks.edit');
+* //儲存作業
+* Route::post('homeworks',[\App\Http\Controllers\HomeworkController::class,'store'])->name('teacher.homeworks.store');
+* //更新作業
+* Route::patch('homeworks/{id}',[\App\Http\Controllers\HomeworkController::class,'update'])->name('teacher.homeworks.update');
+* //刪除作業
+* Route::get('homeworks/{id}',[\App\Http\Controllers\HomeworkController::class,'delete'])->name('teacher.homeworks.destroy');
+* });
