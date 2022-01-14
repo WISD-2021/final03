@@ -19,7 +19,7 @@ class CreatePaysTable extends Migration
             $table->unsignedBigInteger('homework_id');
             $table->dateTime('datetime');
             $table->string('file',100);
-            $table->integer('score');
+            $table->integer('score')->nullable();
             $table->timestamps();
         });
     }
