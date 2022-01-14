@@ -33,28 +33,27 @@
         <form action="/teacher/homeworks" method="POST" role="form">
             @method('POST')
             @csrf
-            <?php
-                $teachers = DB::table('teachers')->orderBy('id','ASC')->get();
-            ?>
-            @foreach($teachers as $teacher)
-                @if(auth()->user()->id == $teacher->user_id)
-                    <label>老師編號：{{$teacher->id}}</label>
-                @endif
-            @endforeach
 
-{{--            <div class="form-group" hidden>--}}
-{{--                <label>課程編號：</label>--}}
-{{--                <input name="course_id" class="form-control" placeholder="請輸入課程標題" value="{{$homework->course_id}}">--}}
-{{--            </div>--}}
+            @foreach($courses as $course)
+                <div class="form-group">
+                    <label>課程編號：{{$course->id}}</label>
+                </div>
+                <div class="form-group"  hidden>
+                    <input name="course_id" class="form-control" placeholder="請輸入作業名稱" value="{{$course->id}}">
+                </div>
+                <div class="form-group"  >
+                    <label>課程名稱：{{$course->name}}</label>
+                </div>
+            @endforeach
 
             <div class="form-group">
                 <label>作業名稱：</label>
-                <input name="name" class="form-control" placeholder="請輸入課程名稱" value="{{old('name')}}">
+                <input name="name" class="form-control" placeholder="請輸入作業名稱" value="{{old('name')}}">
             </div>
 
             <div class="form-group">
                 <label>作業內容：</label>
-                <input name="credits" class="form-control" placeholder="請輸入學分" value="{{old('credits')}}">
+                <input name="content" class="form-control" placeholder="請輸入作業內容" value="{{old('credits')}}">
             </div>
 
 

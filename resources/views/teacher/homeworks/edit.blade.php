@@ -34,11 +34,22 @@
             @method('PATCH')
             @csrf
 
-            <div class="form-group" hidden>
-                <label>course_id：</label>
-                <input name="course_id" class="form-control" placeholder="請輸入作業題目" value="{{old('homework_id',$homework->id)}}" hidden>
-            </div>
+            <?php
+            $courses= DB::table('courses')->orderBy('id','ASC')->get();?>
 
+            @foreach($courses as $course)
+                @if($course->id == $homework->course_id)
+                    <div class="form-group">
+                        <label>課程編號：{{$course->id}}</label>
+                    </div>
+                    <div class="form-group"  hidden>
+                        <input name="course_id" class="form-control" placeholder="請輸入作業名稱" value="{{$course->id}}">
+                    </div>
+                    <div class="form-group"  >
+                        <label>課程名稱：{{$course->name}}</label>
+                    </div>
+                @endif
+            @endforeach
             <div class="form-group">
                 <label>作業名稱：</label>
                 <input name="name" class="form-control" placeholder="請輸入作業名稱" value="{{old('name',$homework->name)}}">
@@ -46,7 +57,7 @@
 
             <div class="form-group">
                 <label>作業內容：</label>
-                <input name="credits" class="form-control" placeholder="請輸入作業內容" value="{{old('content',$homework->content)}}">
+                <input name="content" class="form-control" placeholder="請輸入作業內容" value="{{old('content',$homework->content)}}">
             </div>
 
             <div class="text-right">

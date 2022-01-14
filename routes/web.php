@@ -43,6 +43,7 @@ Route::prefix('teacher')->group(function () {
     Route::get('homeworks/create', [\App\Http\Controllers\HomeworkController::class, 'create'])->name('teacher.homeworks.create');  //候台產生新增表單的路由
     Route::get('homeworks/{id}/edit', [\App\Http\Controllers\HomeworkController::class, 'edit'])->name('teacher.homeworks.edit');  //候台生產修改表單的路由
     Route::post('homeworks',[\App\Http\Controllers\HomeworkController::class,'store'])->name('teacher.homeworks.store'); //新增資料
+    Route::get('homeworks/{homework}',[\App\Http\Controllers\HomeworkController::class,'show'])->name('teacher.homeworks.show'); //顯示資料
     Route::patch('homeworks/{id}',[\App\Http\Controllers\HomeworkController::class,'update'])->name('teacher.homeworks.update'); //更新資料
     Route::get('homeworks/{id}',[\App\Http\Controllers\HomeworkController::class,'delete'])->name('teacher.homeworks.destroy'); //刪除資料
 });

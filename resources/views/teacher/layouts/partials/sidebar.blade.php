@@ -47,8 +47,29 @@
             <li>
                 <a href="{{ route('teacher.courses.index') }}"><i class="fa fa-fw fa-edit"></i> 課程管理</a>
             </li>
-            <li>
-                <a href="{{ route('teacher.homeworks.index') }}"><i class="fa fa-fw fa-edit"></i> 作業管理</a>
+            <li class="dropdown">
+                <?php
+                session_start();
+                $course= DB::table('courses')->orderBy('id','ASC')->get();
+                $teacher= DB::table('teachers')->where('user_id',auth()->user()->id)->orderBy('id','ASC')->get();?>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> 作業管理 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    @foreach($course as $courses)
+                        @foreach($teacher as $teachers)
+                            @if($courses->teacher_id == $teachers->id)
+                                <form  method="GET" action='{{ route('teacher.homeworks.index'), $courses->id}}' style="display: inline">
+                                    <li class="mb-1">
+                                        <?php
+                                            echo "<input name='course_id' value='".$courses->id."' hidden>";
+                                        ?>
+                                            <button class="btn btn-outline-dark" type="submit" style="width:225px;height:30px;">{{$courses->name}}</button>
+                                        <!--<a href="{{ route('teacher.homeworks.index'), $courses->id}}">{{$courses->name}}</a>-->
+                                    </li>
+                                </form>
+                            @endif
+                        @endforeach
+                    @endforeach
+                </ul>
             </li>
         </ul>
     </div>

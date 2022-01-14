@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\Homework;
 use App\Http\Requests\StoreHomeworkRequest;
 use App\Http\Requests\UpdateHomeworkRequest;
+use App\Models\Pay;
 
 class HomeworkController extends Controller
 {
@@ -15,9 +17,14 @@ class HomeworkController extends Controller
      */
     public function index()
     {
-        $homeworks = Homework::orderBy('id','ASC')->get();
-        $data = ['homework' => $homeworks];
-        return view('teacher.homeworks.index',$data);
+
+       //$_SESSION['course_id']=$_GET['id'];
+
+        $homeworks = Homework::where('course_id',$_GET['course_id'])->orderBy('id','ASC')->get();
+        $data = ['homeworks' => $homeworks];
+        $courses = Course::where('id',$_GET['course_id'])->orderBy('id','ASC')->get();
+        $data2 = ['courses'=>$courses];
+        return view('teacher.homeworks.index',$data,$data2);
     }
 
     /**
@@ -27,7 +34,10 @@ class HomeworkController extends Controller
      */
     public function create()
     {
-        return view('teacher.homeworks.create');
+        $courses = Course::where('id',$_GET['course_id'])->orderBy('id','ASC')->get();
+        $data2 = ['courses'=>$courses];
+        //$_SESSION['course_id']=$_GET['course_id'];
+        return view('teacher.homeworks.create',$data2);
     }
 
     /**
@@ -38,8 +48,8 @@ class HomeworkController extends Controller
      */
     public function store(StoreHomeworkRequest $request)
     {
-        Homework::create($request->aall());
-        return redirect()->route('teacher.homeworks.index');
+        Homework::create($request->all());
+        return redirect()->route('teacher.dashboard.index');
     }
 
     /**
@@ -50,7 +60,11 @@ class HomeworkController extends Controller
      */
     public function show(Homework $homework)
     {
-        //
+        $homework = Homework::where('id',$homework)->get();
+        $data = ['homework'=>$homework];
+        //$pays = Pay::where('homework_id',$homework)->orderBy('id','ASC')->get();
+        //$data2 = ['homework'=>$homework];
+        return view('teacher.homeworks.show', $data);
     }
 
     /**
@@ -77,7 +91,7 @@ class HomeworkController extends Controller
     {
         $homework = Homework::find($id);
         $homework->update($request->all());
-        return redirect()->route('teacher.homeworks.index');
+        return redirect()->route('teacher.dashboard.index');
     }
 
     /**
@@ -86,9 +100,9 @@ class HomeworkController extends Controller
      * @param  \App\Models\Homework  $homework
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
         Homework::destroy($id);
-        return redirect()->route('teacher.homeworks.index');
+        return redirect()->route('teacher.dashboard.index');
     }
 }
