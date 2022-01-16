@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
+use App\Models\Elective;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 
@@ -15,8 +16,9 @@ class StudentController extends Controller
      */
     public function index()
     {
-        
-        return view('student');
+        $students = Student::where('user_id',auth()->user()->id)->get();
+        $data = ['students' => $students];
+        return view('student',$data);
     }
 
     /**
