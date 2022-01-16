@@ -17,7 +17,7 @@ class CreatePaysTable extends Migration
             $table->id();
             $table->unsignedBigInteger('student_id');
             $table->unsignedBigInteger('homework_id');
-            $table->dateTime('datetime');
+            $table->date('date');
             $table->string('file',100);
             $table->integer('score')->nullable();
             $table->timestamps();
