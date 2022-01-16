@@ -2,21 +2,20 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             <a href="/student">Student</a>&nbsp;&nbsp;/&nbsp;
-{{--            <?php--}}
-{{--//               $homeworks= DB::table('homework')->where('id',$_GET['homework_id'])->orderBy('id','ASC')->get();--}}
-{{--//               $courses= DB::table('courses')->where('id',$_GET['course_id'])->orderBy('id','ASC')->get();--}}
-{{--            ?>--}}
-{{--            @foreach($courses as $course)--}}
-{{--                @foreach($homeworks as $homework)--}}
-{{--                    <from method="GET" action="{{ route('courses.index'), $course->id}}">--}}
-{{--                        <input name="course_id" class="form-control" value="{{$course->id}}" hidden>--}}
-{{--                        <button type="submit" class="btn btn-link">{{ $course->name }}</button>--}}
-{{--                    </from>--}}
-{{--                    &nbsp;&nbsp;/&nbsp;--}}
-{{--                    {{$homework->name}}--}}
-
-{{--                @endforeach--}}
-{{--            @endforeach--}}
+            @foreach($pays as $pay)
+                <?php
+                    $homeworks = DB::table('homework')->where('id',$pay->homework_id)->orderby('id','ASC')->get();
+                ?>
+                @foreach($homeworks as $homework)
+                    <?php
+                        $courses = DB::table('courses')->where('id',$homework->course_id)->orderby('id','ASC')->get();
+                    ?>
+                    @foreach($courses as $course)
+                        <a href="/course?course_id={{$course->id}}">{{$course->name}}</a>&nbsp;&nbsp;/&nbsp;
+                        {{$homework->name}}
+                    @endforeach
+                @endforeach
+            @endforeach
         </h2>
     </x-slot>
     <div class="py-12">

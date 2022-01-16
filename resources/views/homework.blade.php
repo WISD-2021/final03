@@ -8,11 +8,7 @@
             ?>
             @foreach($courses as $course)
                 @foreach($homeworks as $homework)
-                    <from method="GET" action="{{ route('courses.index'), $course->id}}">
-                        <input name="course_id" class="form-control" value="{{$course->id}}" hidden>
-                        <button type="submit" class="btn btn-link">{{ $course->name }}</button>
-                    </from>
-                    &nbsp;&nbsp;/&nbsp;
+                    <a href="/course?course_id={{$course->id}}">{{$course->name}}</a>&nbsp;&nbsp;/&nbsp;
                     {{$homework->name}}
                 @endforeach
             @endforeach
