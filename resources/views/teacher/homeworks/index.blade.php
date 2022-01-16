@@ -43,10 +43,6 @@
                 @foreach($homeworks as $homework)
                     @foreach($courses as $course)
                     <tr>
-                        <?php
-
-                            //$_SESSION['course_id']=$course->id;
-                        ?>
                         <td style="text-align: center">{{ $homework->id }}</td>
                         <td name="course_name" value="{{$course->name}}">{{$course->name}}</td>
                         <td>{{$homework->name}}</td>

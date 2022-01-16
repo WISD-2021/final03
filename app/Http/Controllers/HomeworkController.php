@@ -17,9 +17,6 @@ class HomeworkController extends Controller
      */
     public function index()
     {
-
-       //$_SESSION['course_id']=$_GET['id'];
-
         $homeworks = Homework::where('course_id',$_GET['course_id'])->orderBy('id','ASC')->get();
         $data = ['homeworks' => $homeworks];
         $courses = Course::where('id',$_GET['course_id'])->orderBy('id','ASC')->get();

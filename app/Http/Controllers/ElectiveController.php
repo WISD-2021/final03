@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\Elective;
 use App\Http\Requests\StoreElectiveRequest;
 use App\Http\Requests\UpdateElectiveRequest;
@@ -15,7 +16,9 @@ class ElectiveController extends Controller
      */
     public function index()
     {
-        //
+        $courses = Course::where('id',$_GET['course_id'])->get();
+        $data = ['courses' => $courses];
+        return view('course',$data);
     }
 
     /**

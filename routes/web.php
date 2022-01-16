@@ -25,9 +25,14 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::middleware(['auth:sanctum','verified'])->get('/student',[App\Http\Controllers\StudentController::class,'index'])->name('student.index');
 
-Route::get('/course',function(){
-    return view('course');
-});
+Route::get('course', [\App\Http\Controllers\ElectiveController::class, 'index'])->name('courses.index');
+
+Route::get('homework', [\App\Http\Controllers\PayController::class, 'index'])->name('homework.index');
+Route::get('homework/create', [\App\Http\Controllers\PayController::class, 'create'])->name('homework.create');
+Route::get('homework/{id}/edit', [\App\Http\Controllers\PayController::class, 'edit'])->name('homework.edit');
+Route::post('homework', [\App\Http\Controllers\PayController::class, 'store'])->name('homework.store');
+Route::patch('homework/{id}',[\App\Http\Controllers\PayController::class,'update'])->name('homework.update');
+
 
 Route::prefix('teacher')->group(function () {
     Route::get('/', [\App\Http\Controllers\TeacherController::class, 'index'])->name('teacher.dashboard.index');  //進入後台管理介面的路由

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Homework;
 use App\Models\Pay;
+use App\Models\Course;
 use App\Http\Requests\StorePayRequest;
 use App\Http\Requests\UpdatePayRequest;
 
@@ -15,7 +17,11 @@ class PayController extends Controller
      */
     public function index()
     {
-        //
+        $courses = Course::where('id',$_GET['course_id'])->get();
+        $data = ['courses' => $courses];
+        $homeworks = Homework::where('id',$_GET['homework_id'])->get();
+        $data2 = ['homeworks' => $homeworks];
+        return view('homework',$data,$data2);
     }
 
     /**
@@ -25,7 +31,11 @@ class PayController extends Controller
      */
     public function create()
     {
-        //
+        $courses = Course::where('id',$_GET['course_id'])->get();
+        $data = ['courses' => $courses];
+        $homeworks = Homework::where('id',$_GET['homework_id'])->get();
+        $data2 = ['homeworks' => $homeworks];
+        return view('homeworkcreate',$data,$data2);
     }
 
     /**
@@ -36,7 +46,8 @@ class PayController extends Controller
      */
     public function store(StorePayRequest $request)
     {
-        //
+        Pay::create($request->all());
+        return redirect()->route('student.index');
     }
 
     /**
@@ -56,9 +67,11 @@ class PayController extends Controller
      * @param  \App\Models\Pay  $pay
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pay $pay)
+    public function edit($id)
     {
-        //
+        $pays = Pay::where('id',$id)->get();
+        $data = ['pays'=>$pays];
+        return view('homeworkedit',$data);
     }
 
     /**
@@ -68,9 +81,11 @@ class PayController extends Controller
      * @param  \App\Models\Pay  $pay
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePayRequest $request, Pay $pay)
+    public function update(UpdatePayRequest $request, $id)
     {
-        //
+        $pays = Pay::find($id);
+        $pays->update($request->all());
+        return redirect()->route('student.index');
     }
 
     /**

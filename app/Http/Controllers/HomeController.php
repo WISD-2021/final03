@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -21,7 +22,9 @@ class HomeController extends Controller
             }
             else if (auth()->user()->status=='學生')
             {
-                return view('student');
+                $students = Student::where('user_id',auth()->user()->id)->get();
+                $data = ['students' => $students];
+                return view('student',$data);
             }
         }
 
